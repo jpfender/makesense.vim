@@ -37,6 +37,13 @@ syn keyword mplTodo		contained TODO FIXME XXX
 
 syn cluster mplTop add=mplError,mplError,mplBranch,mplLabelRegion,mplLabel,mplConditional,mplRepeat,mplBoolean,mplConstant,mplTypedef,mplOperator,mplType,mplType,mplStatement,mplStorageClass,mplAssert,mplExceptions,mplMethodDecl,mplClassDecl,mplClassDecl,mplClassDecl,mplScopeDecl,mplError,mplUserLabel,mplLangObject
 
+" Spidey keywords
+syn keyword spideyType		neighborhood template hops
+syn keyword spideyOperator	and create from
+syn keyword spideyConstraint	max
+
+syn cluster mplTop add=spideyType,spideyOperator,spideyConstraint
+
 " matching
 syn match   mplCharacter	"'[^']*'"
 syn match   mplCharacter	"'\\''"
@@ -61,6 +68,7 @@ syn match   mplSpecialError	 contained "\\."
 syn match   mplSpecialChar	 contained "\\\([4-9]\d\|[0-3]\d\d\|[\"\\'ntbrf]\|u\x\{4\}\)"
 syn region  mplString		start=+"+ end=+"+ end=+$+ contains=mplSpecialChar,mplSpecialError
 
+syn region spideyFold start="{:" end=":}" transparent fold
 " Functions
 syn match  mplFuncDef "^\(\t\| \{8\}\)[_$a-zA-Z][_$a-zA-Z0-9_. \[\]]*([^-+*/()]*)" contains=mplScopeDecl,mplType,mplStorageClass,@mplClasses
 syn region mplFuncDef start=+^\(\t\| \{8\}\)[$_a-zA-Z][$_a-zA-Z0-9_. \[\]]*([^-+*/()]*,\s*+ end=+)+ contains=mplScopeDecl,mplType,mplStorageClass,mplClasses
@@ -114,3 +122,7 @@ hi def link mplCommentStar	mplComment
 hi def link mplType		Type
 
 hi def link mplParenError	mplError
+
+hi def link spideyType		Type
+hi def link spideyOperator	Operator
+hi def link spideyConstraint	Conditional
